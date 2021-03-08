@@ -43,7 +43,7 @@ export class SteamMarketParser {
   }
 
   public static async getMarketData(itemName: string, options: MarketDataParams): Promise<MarketItemData> {
-    const encodedName = encodeURI(itemName).replaceAll('/', '%2F');
+    const encodedName = encodeURI(itemName.replaceAll('/', '-'));
 		const path = `/market/listings/${options.appId}/${encodedName}`;
     const response = await SteamMarketParser.request({ path, proxy: options.proxy });
 
